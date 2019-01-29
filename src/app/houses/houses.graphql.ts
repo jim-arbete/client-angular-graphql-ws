@@ -26,7 +26,7 @@ export interface HousesChangedSubscription {
 @Injectable({
   providedIn: 'root'
 })
-export class AllHousesGQL extends Query<HousesQuery, {}> {
+export class AllHousesGQL extends Query<HousesQuery> {
   document = gql`
     query {
       houses {
@@ -42,11 +42,10 @@ export class AllHousesGQL extends Query<HousesQuery, {}> {
   `
 }
 
-
 @Injectable({
   providedIn: 'root',
 })
-export class HousesChangedGQL extends Subscription<HousesChangedSubscription, {}> {
+export class HousesChangedGQL extends Subscription<HousesChangedSubscription> {
   document = gql`
     subscription {
       housesChanged {
