@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
-import { HousesService } from './houses.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { HousesChangedGQL, AllHousesGQL, House } from './houses.graphql';
 
 @Component({
   selector: 'app-houses',
@@ -13,35 +13,26 @@ import { HousesService } from './houses.service';
       Error :(
     </div>
 
-    <div *ngFor="let house of houses">
-      <p>{{house.id}}: {{house.name}}</p>
+    <div *ngFor="let house of houses | async">
+      <h4>{{house.id}}: {{house.name}}</h4>
+      <app-house-widget [house]="house"></app-house-widget>
     </div>
   `
 })
 export class HousesComponent implements OnInit {
 
-  houses: any[]
-  loading: boolean
-  errors: any
+  houses: Observable<House[]>
 
-  constructor(private _apollo: Apollo, private _housesService: HousesService) { }
+  constructor(private allHousesGQL: AllHousesGQL, private housesChangedGQL: HousesChangedGQL) {
+    this.housesChangedGQL.subscribe()
+  }
 
   ngOnInit() {
-    this._apollo.watchQuery<any>({
-      query: gql`
-      query {
-        houses {
-          id
-          name
-        }
-      }
-      `
-    })
-    .valueChanges.subscribe(({ data, loading, errors }) => {
-      this.houses = data.houses
-      this.loading = loading
-      this.errors = errors
-    })
+    this.houses = this.allHousesGQL.watch()
+    .valueChanges
+    .pipe(
+      map(result => result.data.houses)
+    )
   }
 
 }

@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HousesService } from './houses.service';
+import { AllHousesGQL } from './houses.graphql';
 
 describe('HousesService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: HousesService = TestBed.get(HousesService);
+    const service: AllHousesGQL = TestBed.get(AllHousesGQL);
     expect(service).toBeTruthy();
   });
 });
