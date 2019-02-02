@@ -15,12 +15,8 @@ import { HousesChangedGQL, AllHousesGQL, House } from './houses.graphql';
 
     <div *ngFor="let house of houses | async">
       <h4>{{house.id}}: {{house.name}}</h4>
-        <div *ngFor="let room of house.rooms">
-          <h5>{{room.name}}</h5>
-          <p>Temperature: {{room.temperature}}</p>
-          <p>Humidity: {{room.humidity}}
-        </div>
-      <!-- <app-house-widget [house]="house"></app-house-widget> -->
+
+      <app-house-widget [house]="house"></app-house-widget>
     </div>
   `
 })
