@@ -4,16 +4,55 @@ import { House } from './houses.graphql';
 @Component({
   selector: 'app-house-widget',
   template: `
-    <div *ngFor="let room of house.rooms">
-      <h5>{{room.name}}</h5>
-      <p>Temperature: {{room.temperature}}</p>
-      <p>Humidity: {{room.humidity}}
-    </div>
-  `
+    <mat-card class="card" md-3>
+
+      <mat-card-header>
+        <div mat-card-avatar><mat-icon>home</mat-icon></div>
+        <mat-card-title>{{house.name}}</mat-card-title>
+        <mat-card-subtitle>Visar realtidsdata från varje rum</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <table mat-table [dataSource]="house.rooms" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let room; let i = index"> <!--{{i+1}}--> {{room.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="temperature">
+          <th mat-header-cell *matHeaderCellDef> Temperatur </th>
+          <td mat-cell *matCellDef="let room"> {{room.temperature}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="humidity">
+          <th mat-header-cell *matHeaderCellDef> Luftfuktighet </th>
+          <td mat-cell *matCellDef="let room"> {{room.humidity}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+
+  </mat-card>
+  `,
+  styles: [`
+    .mat-card {
+      max-width: 80%;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    .mat-icon { font-size: 48px; }
+    table {
+      width: 100%;
+    }
+  `]
 })
 export class HouseWidgetComponent implements OnInit {
 
   @Input() house: House
+  displayedColumns: string[] = ['name', 'temperature', 'humidity'];
 
   constructor() { }
 
