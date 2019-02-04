@@ -1,19 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { House } from './houses.graphql';
+import { Home } from './homes.graphql';
 
 @Component({
-  selector: 'app-house-widget',
+  selector: 'app-home-widget',
   template: `
     <mat-card class="card" md-3>
 
       <mat-card-header>
         <div mat-card-avatar><mat-icon>home</mat-icon></div>
-        <mat-card-title>{{house.name}}</mat-card-title>
+        <mat-card-title>{{home.name}}</mat-card-title>
         <mat-card-subtitle>Visar realtidsdata från varje rum</mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-content>
-        <table mat-table [dataSource]="house.rooms" class="mat-elevation-z8">
+        <table mat-table [dataSource]="home.rooms" class="mat-elevation-z8">
 
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -49,9 +49,9 @@ import { House } from './houses.graphql';
     }
   `]
 })
-export class HouseWidgetComponent implements OnInit {
+export class HomeWidgetComponent implements OnInit {
 
-  @Input() house: House
+  @Input() home: Home
   displayedColumns: string[] = ['name', 'temperature', 'humidity'];
 
   constructor() { }

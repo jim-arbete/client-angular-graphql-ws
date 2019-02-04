@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Query, Subscription } from 'apollo-angular';
 import gql from 'graphql-tag';
 
-export interface House {
+export interface Home {
   id: number
   name: string
   votes: number
@@ -15,21 +15,21 @@ export interface Room {
   humidity: number
 }
 
-export interface HousesQuery {
-  houses: House[]
+export interface HomesQuery {
+  Homes: Home[]
 }
 
-export interface HousesChangedSubscription {
-  housesChanged: House[]
+export interface HomesChangedSubscription {
+  HomesChanged: Home[]
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class AllHousesGQL extends Query<HousesQuery> {
+export class AllHomesGQL extends Query<HomesQuery> {
   document = gql`
     query {
-      houses {
+      Homes {
         id
         name
         rooms {
@@ -45,10 +45,10 @@ export class AllHousesGQL extends Query<HousesQuery> {
 @Injectable({
   providedIn: 'root',
 })
-export class HousesChangedGQL extends Subscription<HousesChangedSubscription> {
+export class HomesChangedGQL extends Subscription<HomesChangedSubscription> {
   document = gql`
     subscription {
-      housesChanged {
+      HomesChanged {
         id
         name
         rooms {
