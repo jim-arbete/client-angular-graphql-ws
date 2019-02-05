@@ -2,9 +2,14 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+    <mat-toolbar color="primary">
+      <mat-icon style="margin-right:15px;">settings_remote</mat-icon> {{appTitle}}
+    </mat-toolbar>
+    <app-homes></app-homes>
+    <router-outlet></router-outlet>
+  `
 })
 export class AppComponent {
-  appTitle = 'App';
+  appTitle = 'Homes App';
 }
