@@ -39,7 +39,6 @@ export class AllHomesGQL extends Query<HomesQuery> {
       }
     }
   `;
-  operationName: 'homes';
 }
 
 @Injectable({

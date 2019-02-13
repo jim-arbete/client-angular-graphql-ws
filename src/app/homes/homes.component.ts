@@ -19,7 +19,6 @@ export class HomesComponent implements OnInit, OnDestroy {
   constructor(private allHomesGQL: AllHomesGQL, private homesChangedGQL: HomesChangedGQL) {}
 
   ngOnInit() {
-    // this.homes = this.allHomesGQL.watch()
     this.homes = this.allHomesGQL.watch()
     .valueChanges
     .pipe(
