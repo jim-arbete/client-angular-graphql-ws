@@ -3,24 +3,23 @@ import { Query, Subscription } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 export interface Home {
-  id: number
-  name: string
-  votes: number
-  rooms: Room[]
+  id: number;
+  name: string;
+  rooms: Room[];
 }
 
 export interface Room {
-  name: string
-  temperature: number
-  humidity: number
+  name: string;
+  temperature: number;
+  humidity: number;
 }
 
 export interface HomesQuery {
-  Homes: Home[]
+  Homes: Home[];
 }
 
 export interface HomesChangedSubscription {
-  HomesChanged: Home[]
+  HomesChanged: Home[];
 }
 
 @Injectable({
@@ -39,7 +38,8 @@ export class AllHomesGQL extends Query<HomesQuery> {
         }
       }
     }
-  `
+  `;
+  operationName: 'homes';
 }
 
 @Injectable({
@@ -58,5 +58,5 @@ export class HomesChangedGQL extends Subscription<HomesChangedSubscription> {
         }
       }
     }
-  `
+  `;
 }

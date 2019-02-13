@@ -13,22 +13,23 @@ import { HomesChangedGQL, AllHomesGQL, Home } from './homes.graphql';
 })
 export class HomesComponent implements OnInit, OnDestroy {
 
-  homesSubscription: Subscription
-  homes: Observable<Home[]>
+  homesSubscription: Subscription;
+  homes: Observable<Home[]>;
 
   constructor(private allHomesGQL: AllHomesGQL, private homesChangedGQL: HomesChangedGQL) {}
 
   ngOnInit() {
+    // this.homes = this.allHomesGQL.watch()
     this.homes = this.allHomesGQL.watch()
     .valueChanges
     .pipe(
       map(result => result.data.Homes)
-    )
+    );
 
     // Websocket => Listen to ws-events on the backend-graphql-api
     // 1st .subscribe() is method of homesChangedGQL.subscribe()
     // 2nd .subscribe() is Observable<SubscriptionResult>
-    this.homesSubscription = this.homesChangedGQL.subscribe().subscribe()
+    this.homesSubscription = this.homesChangedGQL.subscribe().subscribe();
   }
 
   ngOnDestroy() {

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Home } from './homes.graphql';
+import { Home, Room } from './homes.graphql';
 
 @Component({
   selector: 'app-home-widget',
@@ -13,11 +13,11 @@ import { Home } from './homes.graphql';
       </mat-card-header>
 
       <mat-card-content>
-        <table mat-table [dataSource]="home.rooms" class="mat-elevation-z8">
+        <table mat-table [dataSource]="rooms" class="mat-elevation-z8">
 
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let room; let i = index"> <!--{{i+1}}--> {{room.name}} </td>
+          <td mat-cell *matCellDef="let room"> {{room.name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="temperature">
@@ -51,12 +51,14 @@ import { Home } from './homes.graphql';
 })
 export class HomeWidgetComponent implements OnInit {
 
-  @Input() home: Home
+  @Input() home: Home;
+  rooms: Room[];
   displayedColumns: string[] = ['name', 'temperature', 'humidity'];
 
   constructor() { }
 
   ngOnInit() {
+    this.rooms = this.home.rooms;
   }
 
 }

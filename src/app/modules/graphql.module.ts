@@ -7,7 +7,7 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
 import { getMainDefinition } from 'apollo-utilities';
 
 
-const uri = 'http://localhost:4000/graphql'
+const uri = 'http://localhost:4000/graphql';
 
 export function createApollo(httpLink: HttpLink) {
 
@@ -43,7 +43,7 @@ export function createApollo(httpLink: HttpLink) {
     {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,
-      deps: [HttpLink],
+      deps: [ HttpLink ],
     },
   ],
 })
