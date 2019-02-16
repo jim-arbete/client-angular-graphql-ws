@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
       <mat-icon style="margin-right:15px;">settings_remote</mat-icon> {{appTitle}}
     </mat-toolbar>
     <app-homes></app-homes>
+    <router-outlet></router-outlet>
   `
-  // <router-outlet></router-outlet>
 })
 export class AppComponent {
   appTitle = 'Homes App';
