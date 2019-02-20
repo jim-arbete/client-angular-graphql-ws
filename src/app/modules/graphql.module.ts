@@ -74,8 +74,6 @@ export function createApollo(httpLink: HttpLink) {
     http
   );
 
-  // errorLink.concat(link); // merge link array with error array
-
   return {
     link: errorLink.concat( auth.concat(link) ),
     cache: new InMemoryCache(),

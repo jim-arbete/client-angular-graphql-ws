@@ -1,17 +1,25 @@
-import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
+import { browser, logging, by, element } from 'protractor';
 
+// The REAL backend service must be running for the e2e test to work..
 describe('workspace-project App', () => {
-  let page: AppPage;
+  // beforeEach(() => {
 
-  beforeEach(() => {
-    page = new AppPage();
+  // });
+
+  it('should display title on top of page', () => {
+    browser.get('/');
+    expect(element(by.css('.mat-toolbar')).getText()).toContain('Homes App');
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to client-ws!');
+  it('should login by clicking login-button and check loaded content', async () => {
+
+    await element(by.id('home-component-login')).click();
+
+    const findLoadedText = await element(by.css('.mat-card-content'));
+
+    expect(findLoadedText.getText()).toContain('Vardagsrum');
   });
+
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser

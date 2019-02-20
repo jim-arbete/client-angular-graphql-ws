@@ -18,7 +18,7 @@ import { HomesChangedGQL, AllHomesGQL, Home } from './homes.graphql';
       </div>
     </ng-container>
 
-    <button *ngIf="!loggedIn" (click)="doLogin()" mat-raised-button color="primary">Logga in</button>
+    <button id="home-component-login" *ngIf="!loggedIn" (click)="doLogin()" mat-raised-button color="primary">Logga in</button>
   `,
   styles: [`
     .mat-raised-button {
@@ -46,8 +46,6 @@ export class HomesComponent implements OnInit, OnDestroy {
   constructor(private allHomesGQL: AllHomesGQL, private homesChangedGQL: HomesChangedGQL) {}
 
   ngOnInit() {
-
-    // 1st => Try to fetch data if login-token exist.
     if (this.isAuth()) {
       this.fetch();
     }
@@ -75,7 +73,7 @@ export class HomesComponent implements OnInit, OnDestroy {
     // Websocket => Listen to ws-events on the backend-graphql-api
     // 1st .subscribe() is method of homesChangedGQL.subscribe()
     // 2nd .subscribe() is Observable<SubscriptionResult>
-    this.homesSubscription = this.homesChangedGQL.subscribe().subscribe();
+    // this.homesSubscription = this.homesChangedGQL.subscribe().subscribe();
   }
 
   isAuth() {
