@@ -2,17 +2,28 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.2.
 
+## Installation Prerequisites
+1. Install Node.js version 11 or later `https://nodejs.org/en/download/`. 
+2. Run `npm install -g @angular/cli`
+
 ## Installation
 
 ```bash
+$ git clone https://github.com/jim-arbete/client-ws.git client-ws
+$ cd client-ws
 $ npm install
 ```
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. 
 
-## Build
+```bash
+# If you dont install "@angular/cli" globaly run this instead
+$ npm run ng serve
+```
+
+## Build => Production server
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
