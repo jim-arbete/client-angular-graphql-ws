@@ -73,7 +73,7 @@ export class HomesComponent implements OnInit, OnDestroy {
     // Websocket => Listen to ws-events on the backend-graphql-api
     // 1st .subscribe() is method of homesChangedGQL.subscribe()
     // 2nd .subscribe() is Observable<SubscriptionResult>
-    // this.homesSubscription = this.homesChangedGQL.subscribe().subscribe();
+    this.homesSubscription = this.homesChangedGQL.subscribe().subscribe();
   }
 
   isAuth() {
